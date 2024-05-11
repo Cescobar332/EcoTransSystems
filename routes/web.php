@@ -1,18 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SesionController;
+use App\Http\Controllers\UsuarioController;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
-// Ruta para mostrar el formulario de registro
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
+Route::get('/registro', [UsuarioController::class, 'formularioRegistro'])->name('registro');
+Route::post('/registro', [UsuarioController::class, 'guardarUsuario']);
+Route::get('/login', [SesionController::class, 'formularioInicioSesion'])->name('login');
+Route::post('/login', [SesionController::class, 'inicioSesion'])->name('login.post');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+// Route::post('/dashboard/action', [DashboardController::class, 'store'])->name('dashboard.store');
+// Route::get('/recuperar-contrasena', [SesionController::class, 'recuperarContrasena'])->name('recuperar_contrasena');
+// Route::post('/recuperar-contrasena', [SesionController::class, 'recContra'])->name('recuperar_contrasena.post');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('usuarios', UsuarioController::class);
 
-// Ruta para manejar el proceso de registro
-Route::post('/register', [RegisterController::class, 'register']);
-Route::post('/login', [LoginController::class, 'login']);
+//Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
