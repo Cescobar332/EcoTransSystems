@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECOLAB</title>
-    <link rel="stylesheet" href="resources/css/styles_ext.css">
-    <link rel="icon" type="image/x-icon" href="resources/IMG/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="resources/IMG/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="resources/IMG/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/IMG/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="resources/IMG/favicon_io/site.webmanifest">
+    <link rel="stylesheet" href="resources\css\styles.css">
+    <link rel="icon" type="image/x-icon" href="resources\IMG\favicon_io\favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="resources\IMG\favicon_io\apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="resources\IMG\favicon_io\favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="resources\IMG\favicon_io\favicon-16x16.png">
+    <link rel="manifest" href="resources\IMG\favicon_io\site.webmanifest">
 </head>
 <body>
 
@@ -38,5 +38,5 @@
 <br>
 <br>
 </body>
-<script src="resources/js\script.js"></script>
+<script src="resources\js\script.js"></script>
 </html>

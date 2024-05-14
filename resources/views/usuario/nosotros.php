@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosotros - Cyber Connect Commute</title>
-    <link rel="stylesheet" href="resources/css\styles.css">
+    <link rel="stylesheet" href="resources\css\styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="resources/IMG/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="resources/IMG/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="resources/IMG/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/IMG/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="resources/IMG/favicon_io/site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="resources\IMG\favicon_io\favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="resources\IMG\favicon_io\apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="resources\IMG\favicon_io\favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="resources\IMG\favicon_io\favicon-16x16.png">
+    <link rel="manifest" href="resources\IMG\favicon_io\site.webmanifest">
 </head>
 </head>
 
@@ -25,6 +25,7 @@
             <li class="texto-con-sombra"><a href="resources\views\usuario\nosotros.php">Nosotros</a></li>
             <li class="texto-con-sombra"><a href="resources\views\usuario\servicios.php">Servicios</a></li>
             <li class="texto-con-sombra"><a href="resources\views\usuario\contacto.php">Contacto</a></li>
+            <li class="texto-con-sombra"><a href="resources\views\usuario\estadisticas.php">Reportes</a></li>
             <li class="texto-con-sombra"><a href="resources\views\auth\login.php">Login</a></li>
             <li class="texto-con-sombra"><a href="resources\views\auth\registro.php">Registro</a></li>
         </ul>
@@ -63,7 +64,7 @@
             <h1 class="title">Valores Corporativos</h1>
             <div class="columna3">
                 <div class="card" style="width: 18rem;">
-                    <img src="resources/IMG\security.png" class="card-img-top" alt="...">
+                    <img src="resources\IMG\security.png" class="card-img-top" alt="...">
                     <div class="card-body card-cam">
                         <h5 class="card-title">Seguridad</h5>
                     </div>
@@ -71,7 +72,7 @@
             </div>
             <div class="columna3">
                 <div class="card" style="width: 18rem;">
-                    <img src="resources/IMG\innovation.png" class="card-img-top" alt="...">
+                    <img src="resources\IMG\innovation.png" class="card-img-top" alt="...">
                     <div class="card-body card-cam">
                         <h5 class="card-title">Innovación</h5>
                     </div>
@@ -79,7 +80,7 @@
             </div>
             <div class="columna3">
                 <div class="card" style="width: 18rem;">
-                    <img src="resources/IMG\sostenibilidad.png" class="card-img-top" alt="...">
+                    <img src="resources\IMG\sostenibilidad.png" class="card-img-top" alt="...">
                     <div class="card-body card-cam">
                         <h5 class="card-title">Sostenibilidad</h5>
                     </div>
@@ -87,7 +88,7 @@
             </div>
             <div class="columna3">
                 <div class="card" style="width: 18rem;">
-                    <img src="resources/IMG\accesibilidad.png" class="card-img-top" alt="...">
+                    <img src="resources\IMG\accesibilidad.png" class="card-img-top" alt="...">
                     <div class="card-body card-cam">
                         <h5 class="card-title">Accesibilidad</h5>
                     </div>
@@ -97,7 +98,7 @@
         <section>
             <h1 class="title">Conoce a nuestro equipo</h1>
             <div class="columna2 equipo-member">
-                <img src="resources/IMG\cami.jpg" alt="Camila Villamizar">
+                <img src="resources\IMG\cami.jpg" alt="Camila Villamizar">
                 <h3>Camila Villamizar</h3>
                 <p>Co-Fundadora y CEO</p>
                 <p>Camila es una emprendedora apasionada por la innovación en el transporte urbano. Con
@@ -105,7 +106,7 @@
                     nuestro equipo hacia la excelencia.</p>
             </div>
             <div class="columna2 equipo-member">
-                <img src="resources/IMG\carlos.jpeg" alt="Carlos Rueda">
+                <img src="resources\IMG\carlos.jpeg" alt="Carlos Rueda">
                 <h3>Carlos Rueda</h3>
                 <p>Co-Fundador y CTO</p>
                 <p>Carlos es un visionario tecnológico con experiencia en sistemas distribuidos y
@@ -113,7 +114,7 @@
                     impulsar la innovación en nuestro servicio de transporte.</p>
             </div>
             <div class="columna2 equipo-member">
-                <img src="resources/IMG\fer.jpeg" alt="Fernando Silva">
+                <img src="resources\IMG\fer.jpeg" alt="Fernando Silva">
                 <h3>Fernando Silva</h3>
                 <p>Co-Fundador y CMO</p>
                 <p>Fernando es un estratega de marketing con una sólida comprensión del comportamiento
@@ -126,5 +127,5 @@
         <p>&copy; 2024 Cyber Connect Commute</p>
     </footer>
 </body>
-<script src="resources/js\script.js"></script>
+<script src="resources\js\script.js"></script>
 </html>

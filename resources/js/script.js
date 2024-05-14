@@ -84,6 +84,26 @@ function calcularPrecioRide() {
 }
 
 
+function mostrarFormulario2() {
+    const seleccion = document.getElementById("reporte").value;
+
+    // Ocultar todos los formularios
+    document.getElementById("formulario-semana").classList.add("hidden");
+    document.getElementById("formulario-mes").classList.add("hidden");
+    document.getElementById("formulario-año").classList.add("hidden");
+
+    // Mostrar mensaje según la opción seleccionada
+    if (seleccion === "semana") {
+        document.getElementById("formulario-semana").classList.remove("hidden");
+    } else if (seleccion === "mes") {
+        document.getElementById("formulario-mes").classList.remove("hidden");
+    } else if (seleccion === "año") {
+        document.getElementById("formulario-año").classList.remove("hidden");
+    } 
+    
+}
+
+
 // function geocode() {
 //     var address = document.getElementById("address").value;
 //     var apiKey = "TU_CLAVE_DE_OPENCAGE";
