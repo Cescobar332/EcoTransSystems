@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Trans Systems</title>
+    <link rel="stylesheet" href="resources\css\styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="resources\IMG\favicon_io\favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="resources\IMG\favicon_io\apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="resources\IMG\favicon_io\favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="resources\IMG\favicon_io\favicon-16x16.png">
+    <link rel="manifest" href="resources\IMG\favicon_io\site.webmanifest">
+</head>
+<body>
+    <header>
+        <h1>Eco Trans Systems</h1>
+    </header>
+    <nav>
+        <ul>
+            <li class="texto-con-sombra"><a href="resources\views\usuario\index.php">Home</a></li>
+            <li class="texto-con-sombra"><a href="resources\views\usuario\nosotros.php">Nosotros</a></li>
+            <li class="texto-con-sombra"><a href="resources\views\usuario\servicios.php">Servicios</a></li>
+            <li class="texto-con-sombra"><a href="resources\views\usuario\contacto.php">Contacto</a></li>
+            <li class="texto-con-sombra"><a href="resources\views\usuario\estadisticas.php">Reportes</a></li>
+            <li class="texto-con-sombra"><a href="resources\views\auth\login.php">Login</a></li>
+            <li class="texto-con-sombra"><a href="resources\views\auth\registro.php">Registro</a></li>
+        </ul>
+    </nav>
+    <main id="main">
+        <div class="container mt-5">
+            <h2>Formulario de Servicios</h2>
+            <!-- Selección del servicio -->
+            <div class="form-group">
+                <label for="servicio">Seleccionar servicio:</label>
+                <select id="servicio" class="form-control" onchange="mostrarFormulario()">
+                    <option value="">Selecciona un servicio</option>
+                    <option value="domicilios">Servicio de domicilios con robots y drones</option>
+                    <option value="transporte">Servicio de transporte</option>
+                    <option value="emergencias">Soporte para emergencias</option>
+                    <option value="alquiler">Alquiler de medios de transporte</option>
+                </select>
+            </div>
+
+            <!-- Sección de servicio de domicilios -->
+            <div id="formulario-domicilios" class="hidden">
+                <h3>Servicio de domicilios con robots y drones</h3>
+                <div class="form-group">
+                    <label for="ubicacion-recogida">Ubicación de recogida:</label>
+                    <input type="text" id="ubicacion-recogida" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="direccion-entrega">Dirección de entrega:</label>
+                    <input type="text" id="direccion-entrega" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="peso-paquete">Peso del paquete (en kg):</label>
+                    <input type="number" id="peso-paquete" class="form-control" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio del domicilio:</label>
+                    <input type="text" id="precio" class="form-control" readonly>
+                    <!-- El precio se calcula automáticamente -->
+                </div>
+                <br>
+                <button class="btn btn-primary" onclick="calcularPrecio()">Calcular precio</button>
+                <button class="btn btn-primary">Confirmar</button>
+                <br>
+                <!-- Botón para calcular el precio -->
+
+                <!-- Botón para mostrar métodos de pago -->
+                <div class="mt-3">
+                    <h4 style="text-align: center;">Métodos de pago</h4>
+                    <br>
+                    <div>
+                        <div class="metodos-pago">
+                            <div>
+                                <input type="radio">
+                                <label>Tarjeta débito/crédito</label>
+                                <img src="resources\IMG\tarjetas.jpg">
+                            </div>
+                            <div>
+                                <input type="radio">
+                                <label>PayPal</label>
+                                <img src="resources\IMG\paypal.png">
+                            </div>
+                            <div>
+                                <input type="radio">
+                                <label>PSE</label>
+                                <img src="resources\IMG\pse.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sección de servicio de transporte -->
+            <div id="formulario-transporte" class="hidden">
+                <h3>Servicio de transporte</h3>
+                <div class="form-group">
+                    <label for="ubicacion-actual">Ubicación actual:</label>
+                    <input type="text" id="ubicacion-actual" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="ubicacion-destino">Ubicación de destino:</label>
+                    <input type="text" id="ubicacion-destino" class="form-control">
+                </div>
+                <br>
+                <button class="btn btn-primary" onclick="calcularPrecioRide()">Calcular precio</button>
+                <button class="btn btn-primary">Confirmar</button>
+                <br>
+                <div class="mt-3">
+                    <h4 style="text-align: center;">Plataformas de ridesharing</h4>
+                    <br>
+                    <div class="metodos-pago1">
+                        <div>
+                            <input type="radio" name="ridesharing" value="didi">
+                            <label>Didi</label>
+                            <img src="resources\IMG\didi.png" alt="Didi">
+                            <div id="precio-didi"></div>
+                        </div>
+                        <div>
+                            <input type="radio" name="ridesharing" value="uber">
+                            <label>Uber</label>
+                            <img src="resources\IMG\uber.png" alt="Uber">
+                            <div id="precio-uber"></div>
+                        </div>
+                        <div>
+                            <input type="radio" name="ridesharing" value="indrive">
+                            <label>inDrive</label>
+                            <img src="resources\IMG\indrive.png" alt="inDrive">
+                            <div id="precio-indrive"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sección de soporte para emergencias -->
+            <div id="formulario-emergencias" class="hidden">
+                <h3>Soporte para emergencias</h3>
+                <div class="form-group">
+                    <label for="ubicacion-emergencia">Ubicación actual:</label>
+                    <input type="text" id="address" placeholder="Ingrese una dirección" class="form-control">
+                    <br>
+                    <button class="btn btn-primary">Confirmar</button>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <h4 style="text-align: center;">Servicios de emergencia</h4>
+                    <br>
+                    <div>
+                        <div class="metodos-pago1">
+                            <div>
+                                <input type="radio">
+                                <label>Alerta de seguridad</label>
+                                <img src="resources\IMG\alerta.png">
+                            </div>
+                            <div>
+                                <input type="radio">
+                                <label>Asistencia en carretera</label>
+                                <img src="resources\IMG\grua.png">
+                            </div>
+                            <div>
+                                <input type="radio">
+                                <label>Acceso a servicios de emergencia</label>
+                                <img src="resources\IMG\911.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                    <div class="form-group">
+                        <h4 style="text-align: center;">Mapa de soporte de emergencia</h4>
+                        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1fZwvLLNmR5nxtoB80sj3Uf_3t31ZjoU&ehbc=2E312F&noprof=1" width="1300" height="480"></iframe>
+                    </div>
+                </div>
+            </div>
+            <!-- Sección de alquiler de medios de transporte -->
+            <div id="formulario-alquiler" class="hidden">
+                <h3>Alquiler de medios de transporte</h3>
+                <div class="form-group">
+                    <label para="nombre">Nombres:</label>
+                    <input type="text" id="nombre" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label para="apellido">Apellidos:</label>
+                    <input type="text" id="apellido" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label para="cedula">Cédula de ciudadanía:</label>
+                    <input type="number" id="cedula" class="form-control">
+                </div>
+                <button class="btn btn-primary">Confirmar</button>
+                <br>
+                <div class="form-group">
+                    <h4 style="text-align: center;">Seleccione el medio de transporte</h4>
+                    <br>
+                    <div>
+                        <div class="metodos-pago">
+                            <div>
+                                <input type="radio">
+                                <label>Bicicletas</label>
+                                <img src="resources\IMG\bici.jpeg">
+                            </div>
+                            <div>
+                                <input type="radio">
+                                <label>Patines eléctricos</label>
+                                <img src="resources\IMG\patines_e.jpg">
+                            </div>
+                            <div>
+                                <input type="radio">
+                                <label>Skateboards</label>
+                                <img src="resources\IMG\skateb.jpg" style="width: 3rem;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mapa insertado -->
+                <div class="form-group">
+                    <h4 style="text-align: center;">Ubicación de alquiler</h4>
+                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=16WfFj25um0CErLvvrBlpdt7_daQNokg&ehbc=2E312F&noprof=1" width="1300" height="480"></iframe>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+    </main>
+    <footer>
+        <p>&copy; 2024 Cyber Connect Commute</p>
+    </footer>
+    <script src="resources\js\script.js"></script>
+</body>
+
+</html>
