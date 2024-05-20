@@ -10,6 +10,7 @@ class estadisticasController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role:Admin', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
     }
 
     /**

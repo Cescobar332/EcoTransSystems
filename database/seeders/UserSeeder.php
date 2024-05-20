@@ -19,6 +19,9 @@ class UserSeeder extends Seeder
             'email' => 'mvillamizar666@unab.edu.co',
             'password' => bcrypt('Lavidaes112233')
         ])->assignRole('Admin');
-        User::factory(9)->create();
+        // Crear 9 usuarios con el rol de 'User'
+        User::factory(9)->create()->each(function ($user) {
+            $user->assignRole('User');
+        });
     }
 }
