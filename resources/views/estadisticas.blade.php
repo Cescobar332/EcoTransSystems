@@ -31,6 +31,8 @@
             <li class="texto-con-sombra"><a href="{{ route('servicios') }}">Servicios</a></li>
             <li class="texto-con-sombra"><a href="{{ route('contacto') }}">Contacto</a></li>
             <li class="texto-con-sombra"><a href="{{ route('estadisticas') }}">Reportes</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('historial') }}">Historial</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('flota') }}">Flota</a></li>
             <li class="texto-con-sombra"><a href="{{ route('login') }}">Login</a></li>
             <li class="texto-con-sombra"><a href="{{ route('register') }}">Registro</a></li>
         </ul>
