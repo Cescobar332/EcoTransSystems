@@ -26,6 +26,8 @@ Route::get('/contacto', [App\Http\Controllers\ContactoController::class, 'contac
 // Rutas que requieren autenticación
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/flota', [App\Http\Controllers\FlotaController::class, 'flota'])->name('flota');
+    Route::get('/historial', [App\Http\Controllers\HistorialController::class, 'historial'])->name('historial');
     Route::get('/estadisticas', [App\Http\Controllers\EstadisticasController::class, 'estadisticas'])->name('estadisticas');
     Route::resource('users', UserController::class);
 });
