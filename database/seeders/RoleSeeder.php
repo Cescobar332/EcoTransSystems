@@ -19,23 +19,8 @@ class RoleSeeder extends Seeder
         $admin = Role::create(['name' => 'admin']);
         $users = Role::create(['name' => 'user']);
 
-        $adminUser = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@unab.edu.co',
-            'password' => bcrypt('qwerty;3'),
-        ]);
-
-        $user = User::create([
-            'name' => 'user',
-            'email' => 'user@unab.edu.co',
-            'password' => bcrypt('qwerty;4'),
-        ]);
-
-        // Asignar roles a los usuarios
-        $adminUser->assignRole($admin);
-        $user->assignRole($users);
-
-        Permission::create(['name' => 'estadisticas'])->assignRole($admin);
+        $permission = Permission::create(['name' => 'view statistics']);
+        $role1->givePermissionTo($permission);
 
     }
 }
