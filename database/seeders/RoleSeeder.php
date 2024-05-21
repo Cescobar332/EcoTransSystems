@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\User;
 
 class RoleSeeder extends Seeder
 {
@@ -15,10 +16,26 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $role1 = Role::create(['name' => 'Admin']);
-        $role2 = Role::create(['name' => 'User']);
+        $admin = Role::create(['name' => 'admin']);
+        $users = Role::create(['name' => 'user']);
 
-        Permission::create(['name' => 'admin.estadisticas'])->assignRole($role1);
+        $adminUser = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@unab.edu.co',
+            'password' => bcrypt('qwerty;3'),
+        ]);
+
+        $user = User::create([
+            'name' => 'user',
+            'email' => 'user@unab.edu.co',
+            'password' => bcrypt('qwerty;4'),
+        ]);
+
+        // Asignar roles a los usuarios
+        $adminUser->assignRole($admin);
+        $user->assignRole($users);
+
+        Permission::create(['name' => 'estadisticas'])->assignRole($admin);
 
     }
 }

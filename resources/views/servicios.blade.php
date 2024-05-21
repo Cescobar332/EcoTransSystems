@@ -66,7 +66,6 @@
                 </div>
                 <br>
                 <button class="btn btn-primary" onclick="calcularPrecio()">Calcular precio</button>
-                <button class="btn btn-primary">Confirmar</button>
                 <br>
                 <!-- Botón para calcular el precio -->
 
@@ -92,6 +91,9 @@
                                 <img src="IMG\pse.jpg">
                             </div>
                         </div>
+                        <br>
+                        <br>
+                        <button class="btn btn-primary" onclick="mostrarDatosBancarios()">Confirmar</button>
                     </div>
                 </div>
             </div>
@@ -324,6 +326,11 @@
                 document.getElementById("formulario-año").classList.remove("hidden");
             }
 
+        }
+
+        function mostrarDatosBancarios() {
+            // Redirigir a la vista de datos bancarios
+            window.location.href = "{{ route('datos_bancarios') }}";
         }
     </script>
 </body>
