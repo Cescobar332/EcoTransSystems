@@ -114,7 +114,6 @@
                 </div>
                 <br>
                 <button class="btn btn-primary" onclick="calcularPrecioRide()">Calcular precio</button>
-                <button class="btn btn-primary">Confirmar</button>
                 <br>
                 <div class="mt-3">
                     <h4 style="text-align: center;">Plataformas de ridesharing</h4>
@@ -139,6 +138,8 @@
                             <div id="precio-indrive"></div>
                         </div>
                     </div>
+                    <br>
+                    <button class="btn btn-primary" onclick="mostrarDatosBancarios()">Confirmar</button>
                 </div>
             </div>
             <!-- Sección de soporte para emergencias -->
@@ -190,7 +191,6 @@
                     <label para="cedula">Cédula de ciudadanía:</label>
                     <input type="number" id="cedula" class="form-control">
                 </div>
-                <button class="btn btn-primary">Confirmar</button>
                 <br>
                 <div class="form-group">
                     <h4 style="text-align: center;">Seleccione el medio de transporte</h4>
@@ -213,6 +213,8 @@
                                 <img src="IMG\skateb.jpg" style="width: 3rem;">
                             </div>
                         </div>
+                        <br>
+                        <button class="btn btn-primary" onclick="mostrarDatosBancarios()">Confirmar</button>
                     </div>
                 </div>
             </div>

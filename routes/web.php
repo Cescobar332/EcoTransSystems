@@ -31,6 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/estadisticas', [App\Http\Controllers\EstadisticasController::class, 'estadisticas'])->name('estadisticas');
     Route::resource('users', UserController::class);
     Route::get('/datos_bancarios', [App\Http\Controllers\DatosBancariosController::class, 'datos_bancarios'])->name('datos_bancarios');
-    Route::post('/procesar-pago', [App\Http\Controllers\PagoController::class, 'procesarPago'])->name('procesar_pago');
+    Route::get('/procesar_pago', [App\Http\Controllers\PagoController::class, 'procesar_pago'])->name('procesar_pago');
 });
 Auth::routes();

@@ -21,8 +21,15 @@
                 <label for="banco">Banco:</label>
                 <input type="text" id="banco" name="banco" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary">Pagar</button>
+            <br>
+            <button type="button" class="btn btn-primary" onclick="mostrarProcesarPago()">Pagar</button>
         </form>
     </div>
 </main>
+
+<script>
+    function mostrarProcesarPago() {
+        window.location.href = "{{ route('procesar_pago') }}";
+    }
+</script>
 @endsection
