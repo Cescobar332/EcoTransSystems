@@ -175,6 +175,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <h4 style="text-align: center;">Mapa de soporte de emergencia</h4>
+                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1fZwvLLNmR5nxtoB80sj3Uf_3t31ZjoU&ehbc=2E312F&noprof=1" width="1300" height="480"></iframe>
+                </div>
             </div>
             <!-- Sección de alquiler de medios de transporte -->
             <div id="formulario-alquiler" class="hidden">
@@ -216,6 +220,11 @@
                         <br>
                         <button class="btn btn-primary" onclick="mostrarDatosBancarios()">Confirmar</button>
                     </div>
+                </div>
+                <!-- Mapa insertado -->
+                <div class="form-group">
+                    <h4 style="text-align: center;">Ubicación de alquiler</h4>
+                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=16WfFj25um0CErLvvrBlpdt7_daQNokg&ehbc=2E312F&noprof=1" width="1300" height="480"></iframe>
                 </div>
             </div>
         </div>
