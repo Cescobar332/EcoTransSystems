@@ -12,6 +12,15 @@
     <link rel="icon" type="image/png" sizes="32x32" href="IMG\favicon_io\favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="IMG\favicon_io\favicon-16x16.png">
     <link rel="manifest" href="IMG\favicon_io\site.webmanifest">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,15 +29,15 @@
     </header>
     <nav>
         <ul>
-            <li class="texto-con-sombra"><a href="{{ route('index') }}">Home</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('nosotros') }}">Nosotros</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('servicios') }}">Servicios</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('contacto') }}">Contacto</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('estadisticas') }}">Reportes</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('historial') }}">Historial</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('flota') }}">Flota</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('login') }}">Login</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('register') }}">Registro</a></li>
+            <li class="texto-con-sombra"><a href="index.html">Home</a></li>
+            <li class="texto-con-sombra"><a href="nosotros.html">Nosotros</a></li>
+            <li class="texto-con-sombra"><a href="servicios.html">Servicios</a></li>
+            <li class="texto-con-sombra"><a href="contacto.html">Contacto</a></li>
+            <li class="texto-con-sombra"><a href="estadisticas.html">Reportes</a></li>
+            <li class="texto-con-sombra"><a href="historial.html">Historial</a></li>
+            <li class="texto-con-sombra"><a href="flota.html">Flota</a></li>
+            <li class="texto-con-sombra"><a href="login.html">Login</a></li>
+            <li class="texto-con-sombra"><a href="register.html">Registro</a></li>
         </ul>
     </nav>
     <main id="main">
@@ -70,7 +79,12 @@
                 <button class="btn btn-primary" onclick="calcularPrecio()">Calcular precio</button>
                 <br>
                 <!-- Botón para calcular el precio -->
-
+                <!-- Mapa para simular la ruta -->
+                <button class="btn btn-primary" onclick="initMap()">Mostrar Mapa</button>
+                <div class="form-group">
+                    <h4 style="text-align: center;">Ubicación de recogida y entrega</h4>
+                    <div id="map" style="height: 400px; width: 100%;"></div>
+                </div>
                 <!-- Botón para mostrar métodos de pago -->
                 <div class="mt-3">
                     <h4 style="text-align: center;">Métodos de pago</h4>
@@ -100,7 +114,6 @@
                 </div>
             </div>
 
-
             <!-- Sección de servicio de transporte -->
             <div id="formulario-transporte" class="hidden">
                 <h3>Servicio de transporte</h3>
@@ -114,6 +127,12 @@
                 </div>
                 <br>
                 <button class="btn btn-primary" onclick="calcularPrecioRide()">Calcular precio</button>
+                <button class="btn btn-primary" onclick="initMapTransporte()">Mostrar Mapa</button>
+                <!-- Mapa insertado -->
+                <div class="form-group">
+                    <h4 style="text-align: center;">Ruta de transporte</h4>
+                    <div id="mapTransporte" style="height: 400px; width: 100%;"></div>
+                </div>
                 <br>
                 <div class="mt-3">
                     <h4 style="text-align: center;">Plataformas de ridesharing</h4>
@@ -149,8 +168,12 @@
                     <label for="ubicacion-emergencia">Ubicación actual:</label>
                     <input type="text" id="address" placeholder="Ingrese una dirección" class="form-control">
                     <br>
-                    <button class="btn btn-primary">Confirmar</button>
+                    <button class="btn btn-primary" onclick="initMapEmergencias()">Confirmar</button>
                     <br>
+                    <div class="form-group">
+                        <h4 style="text-align: center;">Ubicación de emergencia</h4>
+                        <div id="mapEmergencias" style="height: 400px; width: 100%;"></div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <h4 style="text-align: center;">Servicios de emergencia</h4>
@@ -345,6 +368,95 @@
             // Redirigir a la vista de datos bancarios
             window.location.href = "{{ route('datos_bancarios') }}";
         }
+
+        // Inicializar el mapa y la ruta
+        async function geocodeAddress(address) {
+            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&countrycodes=co&limit=1&viewbox=-73.1833,7.1253,-73.0156,7.0738&bounded=1`;
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data.length > 0) {
+                return [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+            } else {
+                alert('Dirección no encontrada: ' + address);
+                return null;
+            }
+        }
+
+        async function initMap() {
+            const direccionRecogida = document.getElementById("ubicacion-recogida").value;
+            const direccionEntrega = document.getElementById("direccion-entrega").value;
+
+            const ubicacionRecogida = await geocodeAddress(direccionRecogida);
+            const ubicacionEntrega = await geocodeAddress(direccionEntrega);
+
+            if (ubicacionRecogida && ubicacionEntrega) {
+                // Inicializar el mapa
+                const map = L.map('map').setView(ubicacionRecogida, 13);
+
+                // Añadir capa de OpenStreetMap
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                // Añadir marcadores para la ubicación de recogida y entrega
+                L.marker(ubicacionRecogida).addTo(map).bindPopup('Ubicación de recogida').openPopup();
+                L.marker(ubicacionEntrega).addTo(map).bindPopup('Dirección de entrega').openPopup();
+
+                // Dibujar una línea entre los dos puntos
+                const latlngs = [ubicacionRecogida, ubicacionEntrega];
+                const polyline = L.polyline(latlngs, { color: 'red' }).addTo(map);
+
+                // Ajustar el zoom del mapa para mostrar toda la ruta
+                map.fitBounds(polyline.getBounds());
+            }
+        }
+
+        async function initMapTransporte() {
+            const ubicacionActual = document.getElementById("ubicacion-actual").value;
+            const ubicacionDestino = document.getElementById("ubicacion-destino").value;
+
+            const coordenadasActual = await geocodeAddress(ubicacionActual);
+            const coordenadasDestino = await geocodeAddress(ubicacionDestino);
+
+            if (coordenadasActual && coordenadasDestino) {
+                // Inicializar el mapa
+                const map = L.map('mapTransporte').setView(coordenadasActual, 13);
+
+                // Añadir capa de OpenStreetMap
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                // Añadir marcadores para la ubicación actual y destino
+                L.marker(coordenadasActual).addTo(map).bindPopup('Ubicación actual').openPopup();
+                L.marker(coordenadasDestino).addTo(map).bindPopup('Ubicación de destino').openPopup();
+
+                // Dibujar una línea entre los dos puntos
+                const latlngs = [coordenadasActual, coordenadasDestino];
+                const polyline = L.polyline(latlngs, { color: 'blue' }).addTo(map);
+
+                // Ajustar el zoom del mapa para mostrar toda la ruta
+                map.fitBounds(polyline.getBounds());
+            }
+        }
+        async function initMapEmergencias() {
+        const ubicacionEmergencia = document.getElementById("address").value;
+
+        const coordenadasEmergencia = await geocodeAddress(ubicacionEmergencia);
+
+        if (coordenadasEmergencia) {
+            // Inicializar el mapa
+            const map = L.map('mapEmergencias').setView(coordenadasEmergencia, 13);
+
+            // Añadir capa de OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Añadir marcador para la ubicación de emergencia
+            L.marker(coordenadasEmergencia).addTo(map).bindPopup('Ubicación de emergencia').openPopup();
+        }
+    }
     </script>
 </body>
 
