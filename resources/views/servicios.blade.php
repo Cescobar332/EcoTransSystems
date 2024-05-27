@@ -78,6 +78,9 @@
                 <br>
                 <button class="btn btn-primary" onclick="calcularPrecio()">Calcular precio</button>
                 <br>
+                <br>
+                <br>
+
                 <!-- Botón para calcular el precio -->
                 <!-- Mapa para simular la ruta -->
                 <button class="btn btn-primary" onclick="initMap()">Mostrar Mapa</button>
@@ -197,10 +200,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <h4 style="text-align: center;">Mapa de soporte de emergencia</h4>
-                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1fZwvLLNmR5nxtoB80sj3Uf_3t31ZjoU&ehbc=2E312F&noprof=1" width="1300" height="480"></iframe>
                 </div>
             </div>
             <!-- Sección de alquiler de medios de transporte -->
