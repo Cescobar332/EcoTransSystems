@@ -14,6 +14,7 @@
     <link rel="manifest" href="IMG\favicon_io\site.webmanifest">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <style>
         #map {
@@ -55,6 +56,9 @@
                 </select>
             </div>
 
+            <!-- Enlace al archivo CSS -->
+            <link rel="stylesheet" href="resources/css/styles.css">
+
             <!-- Sección de servicio de domicilios -->
             <div id="formulario-domicilios" class="hidden">
                 <h3>Servicio de domicilios con robots y drones</h3>
@@ -80,7 +84,6 @@
                 <br>
                 <br>
                 <br>
-
                 <!-- Botón para calcular el precio -->
                 <!-- Mapa para simular la ruta -->
                 <button class="btn btn-primary" onclick="initMap()">Mostrar Mapa</button>
@@ -95,24 +98,24 @@
                     <div>
                         <div class="metodos-pago">
                             <div>
-                                <input type="radio">
+                                <input type="radio" name="metodo-pago">
                                 <label>Tarjeta débito/crédito</label>
-                                <img src="IMG\tarjetas.jpg">
+                                <img src="IMG/tarjetas.jpg">
                             </div>
                             <div>
-                                <input type="radio">
+                                <input type="radio" name="metodo-pago">
                                 <label>PayPal</label>
-                                <img src="IMG\paypal.png">
+                                <img src="IMG/paypal.png">
                             </div>
                             <div>
-                                <input type="radio">
+                                <input type="radio" name="metodo-pago">
                                 <label>PSE</label>
-                                <img src="IMG\pse.jpg">
+                                <img src="IMG/pse.jpg">
                             </div>
                         </div>
                         <br>
                         <br>
-                        <button class="btn btn-primary" onclick="mostrarDatosBancarios()">Confirmar</button>
+                        <button id="confirmar-btn" class="btn btn-primary" onclick="mostrarDatosBancarios()">Confirmar</button>
                     </div>
                 </div>
             </div>
@@ -315,16 +318,38 @@
         function calcularPrecio() {
             const peso = document.getElementById("peso-paquete").value;
             let precio = 0;
+            let advertencia = '';
+            const confirmarBtn = document.getElementById("confirmar-btn");
 
             if (peso > 0 && peso <= 1) {
                 precio = 10000; // Precio base
+                advertencia = '';
             } else if (peso > 1 && peso <= 5) {
                 precio = 20000; // Precio intermedio
-            } else if (peso > 5) {
+                advertencia = '';
+            } else if (peso > 5 && peso <= 7) {
                 precio = 30000; // Precio más alto
+                advertencia = '';
+            } else if (peso > 7) {
+                advertencia = 'NO HAY DRONES NI ROBOTS DISPONIBLES EN ESTOS MOMENTOS';
+                confirmarBtn.disabled = true;
+                // Mostrar mensaje de error con SweetAlert2
+                swal({
+                    title: advertencia,
+                    icon: 'error',
+                    customClass: {
+                    content: 'text-center' // Centrar el texto
+                }
+                });
             }
 
-            document.getElementById("precio").value = `COP ${precio.toFixed(0)}`;
+            if (advertencia === '') {
+                document.getElementById("precio").value = `COP ${precio.toFixed(0)}`;
+                confirmarBtn.disabled = false;
+            } else {
+                document.getElementById("precio").value = '';
+                document.getElementById("advertencia").innerText = advertencia;
+            }
         }
 
         function calcularPrecioRide() {
