@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    #protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -35,5 +36,26 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Get the post-login redirect path.
+     *
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Check the user's role and redirect accordingly
+        if ($user->hasRole('admin')) {
+            return 'index'; // Change this to the admin dashboard URL
+        } else if ($user->hasRole('user')) {
+            return route('index_usuario'); // Change this to the user home URL
+        }
+
+        // Default redirect if role is not matched
+        return '/home';
     }
 }

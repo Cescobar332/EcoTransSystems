@@ -14,14 +14,17 @@ class UserSeeder extends Seeder
      */
     public function run() 
     {
+        // Crear un usuario con rol de admin
         User::create([
-            'name' => 'Maria Camila Villamizar Villamizar',
-            'email' => 'mvillamizar666@unab.edu.co',
-            'password' => bcrypt('Lavidaes112233')
-        ])->assignRole('admin');
-        // Crear 9 usuarios con el rol de 'User'
-        User::factory(9)->create()->each(function ($user) {
+            'name' => 'Carlos Rueda',
+            'email' => 'crueda578@unab.edu.co',
+            'password' => bcrypt('1234c')
+        ])->assignRole('user');
+
+        // Crear 8 usuarios adicionales con el rol de 'user'
+        User::factory(8)->create()->each(function ($user) {
             $user->assignRole('user');
         });
     }
 }
+

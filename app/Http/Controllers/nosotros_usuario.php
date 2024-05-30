@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class indexController extends Controller
+class nosotros_usuario extends Controller
 {
     public function __construct()
     {
@@ -17,12 +17,8 @@ class indexController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function home()
+    public function nosotros_usuario()
     {
-        return view('index');
-    }
-    public function index_usuario()
-    {
-        return view('index_usuario');
+        return view('nosotros_usuario');
     }
 }

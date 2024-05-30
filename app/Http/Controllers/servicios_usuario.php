@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class indexController extends Controller
+class servicios_usuario extends Controller
 {
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -17,12 +17,8 @@ class indexController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function home()
+    public function servicios_usuario()
     {
-        return view('index');
-    }
-    public function index_usuario()
-    {
-        return view('index_usuario');
+        return view('servicios_usuario');
     }
 }
