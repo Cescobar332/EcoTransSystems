@@ -25,13 +25,11 @@
     </header>
     <nav>
         <ul>
-            <li class="texto-con-sombra"><a href="{{ route('index') }}">Home</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('nosotros') }}">Nosotros</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('servicios') }}">Servicios</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('contacto') }}">Contacto</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('estadisticas') }}">Reportes</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('historial') }}">Historial</a></li>
-            <li class="texto-con-sombra"><a href="{{ route('flota') }}">Flota</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('index_usuario') }}">Home</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('nosotros_usuarios') }}">Nosotros</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('servicios_usuarios') }}">Servicios</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('contacto_usuario') }}">Contacto</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('historial_usuario') }}">Historial</a></li>
             <li class="texto-con-sombra"><a href="{{ route('login') }}">Login</a></li>
             <li class="texto-con-sombra"><a href="{{ route('register') }}">Registro</a></li>
         </ul>

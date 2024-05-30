@@ -21,4 +21,8 @@ class nosotrosController extends Controller
     {
         return view('nosotros');
     }
+    public function nosotros_usuarios()
+    {
+        return view('nosotros_usuarios');
+    }
 }

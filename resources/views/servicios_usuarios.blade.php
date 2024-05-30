@@ -30,11 +30,11 @@
     </header>
     <nav>
         <ul>
-            <li class="texto-con-sombra"><a href="index.html">Home</a></li>
-            <li class="texto-con-sombra"><a href="nosotros.html">Nosotros</a></li>
-            <li class="texto-con-sombra"><a href="servicios.html">Servicios</a></li>
-            <li class="texto-con-sombra"><a href="contacto.html">Contacto</a></li>
-            <li class="texto-con-sombra"><a href="historial.html">Historial</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('index_usuario') }}">Home</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('nosotros_usuarios') }}">Nosotros</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('servicios_usuarios') }}">Servicios</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('contacto_usuario') }}">Contacto</a></li>
+            <li class="texto-con-sombra"><a href="{{ route('historial_usuario') }}">Historial</a></li>
             <li class="texto-con-sombra"><a href="login.html">Login</a></li>
             <li class="texto-con-sombra"><a href="register.html">Registro</a></li>
         </ul>
