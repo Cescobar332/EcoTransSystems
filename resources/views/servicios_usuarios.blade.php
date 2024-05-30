@@ -319,16 +319,16 @@
             let advertencia = '';
             const confirmarBtn = document.getElementById("confirmar-btn");
 
-            if (peso > 0 && peso <= 1) {
+            if (peso > 0 && peso <= 0.6) {
                 precio = 10000; // Precio base
                 advertencia = '';
-            } else if (peso > 1 && peso <= 5) {
+            } else if (peso > 0.6 && peso <= 1) {
                 precio = 20000; // Precio intermedio
                 advertencia = '';
-            } else if (peso > 5 && peso <= 7) {
+            } else if (peso > 1 && peso <= 1.1) {
                 precio = 30000; // Precio más alto
                 advertencia = '';
-            } else if (peso > 7) {
+            } else if (peso > 1.1) {
                 advertencia = 'NO HAY DRONES NI ROBOTS DISPONIBLES EN ESTOS MOMENTOS';
                 confirmarBtn.disabled = true;
                 // Mostrar mensaje de error con SweetAlert2

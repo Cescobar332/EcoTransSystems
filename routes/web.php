@@ -8,7 +8,10 @@ use App\Http\Controllers\nosotros_usuarios;
 use App\Http\Controllers\servicios_usuarios;
 use App\Http\Controllers\historial_usuario;
 use App\Http\Controllers\contacto_usuario;
+use App\Http\Controllers\FlotaController;
+use App\Http\Controllers\FlotumController;
 use App\Http\Controllers\HistorialServicioController;
+use App\Models\Flotum;
 
 Route::get('/', function () {
     return view('index');
@@ -43,7 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/historial', [App\Http\Controllers\HistorialController::class, 'historial'])->name('historial');
     Route::get('/estadisticas', [App\Http\Controllers\EstadisticasController::class, 'estadisticas'])->name('estadisticas');
     Route::resource('users', UserController::class);
-    Route::resource('historial_servicios', HistorialServicioController::class);
+    Route::resource('historial-servicios', HistorialServicioController::class);
+    Route::resource('flotum', FlotumController::class);
     Route::get('/datos_bancarios', [App\Http\Controllers\DatosBancariosController::class, 'datos_bancarios'])->name('datos_bancarios');
     Route::get('/procesar_pago', [App\Http\Controllers\PagoController::class, 'procesar_pago'])->name('procesar_pago');
 });
